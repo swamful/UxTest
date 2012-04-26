@@ -82,7 +82,6 @@ static PhotoAPIModel *instance = nil;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    NSLog(@"data : %@", [data description]);
     [_recvData appendData:data];
 }
 

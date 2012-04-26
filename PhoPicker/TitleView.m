@@ -9,7 +9,6 @@
 #import "TitleView.h"
 @interface TitleView()
 - (void) makeTitleView;
-- (void) makeRightBtn;
 - (void) makeLeftBtn;
 @end
 @implementation TitleView

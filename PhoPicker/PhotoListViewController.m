@@ -147,6 +147,16 @@
 
 #pragma mark - PhotoAPIModel Delegate
 - (void) requestDone:(PhotoAPIParserModel*) resultData {
+    switch (photoListType) {
+        case PHOTO_LIST_BY_SEARCH:
+            [resultData setTagText:_searchText];
+            break;
+        case PHOTO_LIST_BY_CURRENT:
+            [resultData setTagText:@"hot issue"];
+            break;
+        default:
+            break;
+    }
     [resultData setIndex:[_photoList count]];
     [_photoListView setImageData:resultData];
     [_photoList addObject:resultData];

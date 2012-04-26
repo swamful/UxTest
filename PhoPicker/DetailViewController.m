@@ -9,10 +9,13 @@
 #import "DetailViewController.h"
 #import "AppUtility.h"
 #import "UIConstants.h"
+#import "DetailInfoView.h"
+
 #define detailTextHeight 70
 @interface DetailViewController()
 - (void) makePhotoView;
 - (void) makeMainView;
+- (void) makeInfoView;
 @end
 @implementation DetailViewController
 
@@ -59,7 +62,7 @@
     [_mainView addSubview:_photoFrame];
     [_photoFrame release];
     
-    [_mainView setContentSize:CGSizeMake(320, _photoFrame.frame.origin.y + _photoFrame.frame.size.height + detailTextHeight)];
+    [_mainView setContentSize:CGSizeMake(320, _photoFrame.frame.origin.y + _photoFrame.frame.size.height + detailTextHeight + 50)];
 }
 
 - (void) makeCloseBtn {
@@ -68,6 +71,14 @@
     [closeBtn setImage:[UIImage imageNamed:@"btn_close.png"] forState:UIControlStateNormal];
     [closeBtn addTarget:self action:@selector(actionClose) forControlEvents:UIControlEventTouchUpInside];
     [_mainView addSubview:closeBtn];
+}
+
+- (void) makeInfoView {
+    DetailInfoView *detailInfoView = [[DetailInfoView alloc] initWithFrame:CGRectMake(0,_photoFrame.frame.origin.y + _photoFrame.frame.size.height + 20, 320, detailTextHeight)];
+    NSLog(@"title : %@", [_dataModel title]);
+    [detailInfoView setTagText:[_dataModel tagText]];
+    [_mainView addSubview:detailInfoView];
+    [detailInfoView release];
 }
 
 #pragma mark - View lifecycle
@@ -81,6 +92,7 @@
     [self makeMainView];
     [self makeCloseBtn];
     [self makePhotoView];
+    [self makeInfoView];
     [AppUtility showIndicator:_photoFrame];
     [AppUtility setIndicatorStyleGray];
     [self performSelectorInBackground:@selector(loadImage) withObject:nil];

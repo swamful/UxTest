@@ -10,7 +10,7 @@
 
 @implementation PhotoAPIParserModel
 @synthesize title = _title, lastBuildDate = _lastBuildDate, total = _total, 
-            start = _start, display = _display, item = _item, link = _link, thumbnail = _thumbnail, sizeHeight = _sizeHeight, sizeWidth = _sizeWidth, index;
+            start = _start, display = _display, item = _item, link = _link, thumbnail = _thumbnail, sizeHeight = _sizeHeight, sizeWidth = _sizeWidth, index ,tagText = _tagText;
 
 - (void) dealloc {
     [_title release];
@@ -23,6 +23,7 @@
     [_thumbnail release];
     [_sizeHeight release];
     [_sizeWidth release];
+    [_tagText release];
 }
 
 @end
