@@ -14,8 +14,12 @@
     PhotoFrameView *firstFrameView;
     PhotoFrameView *secondFrameView;
     PhotoFrameView *thirdFrameView;
+    
+    CGPoint _offset;
 }
+@property (nonatomic) CGPoint offset;
 
 - (void) setImageData:(PhotoAPIParserModel *) resultModel;
+- (void) reloadUpsideImage:(NSMutableArray *) dataList;
 - (PhotoFrameView *) minHeightView;
 @end

@@ -53,12 +53,12 @@ static PhotoAPIModel *instance = nil;
     cancelRequest = YES;
 }
 
-- (void) getPhotoListBySearchText:(NSString*) searchText withEngine:(SEARCHENGINE) searchEngine {
+- (void) getPhotoListBySearchText:(NSString*) searchText withEngine:(SEARCHENGINE) searchEngine startIndex:(NSInteger) start{
     cancelRequest = NO;
     NSString *searchUrl ;
     switch (searchEngine) {
         case NAVER:
-            searchUrl = [NSString stringWithFormat:@"%@&query=%@&target=image&display=40", naverApi, [searchText stringByUrlEncoding]];            
+            searchUrl = [NSString stringWithFormat:@"%@&query=%@&target=image&display=40&start=%d", naverApi, [searchText stringByUrlEncoding], start];            
             break;
         case DAUM:
             searchUrl = [NSString stringWithFormat:@"%@&q=%@&output=xml&result=20", daumApi, [searchText stringByUrlEncoding]];            
@@ -68,7 +68,7 @@ static PhotoAPIModel *instance = nil;
             return;
             break;
     }
-    
+//    NSLog(@"searchUrl : %@", searchUrl);
     NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:searchUrl] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
     
     [self.conn initWithRequest:req delegate:self];
@@ -89,7 +89,7 @@ static PhotoAPIModel *instance = nil;
     if (data != nil) {
 //        NSString *decodingString = [[NSString alloc] initWithData:data encoding:0x80000940];    //EUC-KR decoding
         NSString *decodingString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"decodingString : %@", decodingString);
+//        NSLog(@"decodingString : %@", decodingString);
         PhotoAPIXMLParser *parser = [[PhotoAPIXMLParser alloc] init];
         parser.delegate = self;
         [parser parseAPIResultString:decodingString];

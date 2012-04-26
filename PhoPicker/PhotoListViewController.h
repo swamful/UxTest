@@ -17,6 +17,9 @@
     NSString *_searchText;
     
     SEARCHENGINE searchEngine;
+    BOOL requestDoing;
+    
+    NSInteger directionPoint;
 }
 
 @property (nonatomic, retain) NSString *searchText;
