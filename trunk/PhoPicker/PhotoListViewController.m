@@ -57,11 +57,11 @@
     if (!_photoList) {
         _photoList = [[NSMutableArray alloc] init];
     } 
-    
+    requestDoing = YES;
     switch (photoListType) {
         case PHOTO_LIST_BY_SEARCH:
             [_photoList removeAllObjects];
-            [[PhotoAPIModel getSharedInstance] getPhotoListBySearchText:_searchText withEngine:searchEngine];
+            [[PhotoAPIModel getSharedInstance] getPhotoListBySearchText:_searchText withEngine:searchEngine startIndex:1];
             break;
         case PHOTO_LIST_BY_CURRENT:
             [[PhotoAPIModel getSharedInstance] getCurrentPhotoList];
@@ -147,6 +147,7 @@
 
 #pragma mark - PhotoAPIModel Delegate
 - (void) requestDone:(PhotoAPIParserModel*) resultData {
+    requestDoing = NO;
     switch (photoListType) {
         case PHOTO_LIST_BY_SEARCH:
             [resultData setTagText:_searchText];
@@ -178,7 +179,42 @@
 
 #pragma scrollview delegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    directionPoint = scrollView.contentOffset.y - _photoListView.frame.origin.y;
     NSLog(@"photocount : %d", [_photoList count]);
-    NSLog(@"scrollViewWillBeginDragging");
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [_photoListView setOffset:scrollView.contentOffset];
+    NSLog(@"contentsize : %@", NSStringFromCGSize(scrollView.contentSize));
+    NSLog(@"scrollView offset : %@", NSStringFromCGPoint(scrollView.contentOffset));
+    NSLog(@"_photoListView offset : %@", NSStringFromCGRect(_photoListView.frame));
+    NSLog(@"gap : %f", scrollView.contentOffset.y - _photoListView.frame.origin.y);
+    if (scrollView.contentOffset.y - _photoListView.frame.origin.y > directionPoint) {
+        if (!requestDoing && scrollView.contentOffset.y - _photoListView.frame.origin.y  > _photoListView.contentSize.height - 520) {
+            NSLog(@"request!!");
+            requestDoing = YES;
+            switch (photoListType) {
+                case PHOTO_LIST_BY_SEARCH:
+                    [[PhotoAPIModel getSharedInstance] getPhotoListBySearchText:_searchText withEngine:searchEngine startIndex:[_photoList count] + 1];
+                    break;
+                case PHOTO_LIST_BY_CURRENT:
+                    [[PhotoAPIModel getSharedInstance] getCurrentPhotoList];
+                    break;
+                    
+                default:
+                    break;   
+            }
+        }
+    } else {
+        [_photoListView reloadUpsideImage:_photoList];
+    }
+    directionPoint = scrollView.contentOffset.y - _photoListView.frame.origin.y;
+    
+    
+//    NSLog(@"requestDoint : %d", requestDoing);
+//    NSLog(@"scrollView offset : %@", NSStringFromCGPoint(scrollView.contentOffset));
+//    NSLog(@"_photoListView offset : %@", NSStringFromCGRect(_photoListView.frame));
+
+//    NSLog(@"point : %@", NSStringFromCGPoint(scrollView.contentOffset));
 }
 @end

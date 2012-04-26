@@ -14,7 +14,7 @@
 @end
 
 @implementation PhotoListView
-
+@synthesize offset = _offset;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -39,21 +39,28 @@
     
     if (first >= second) {
         if (second >= third) {
-//            NSLog(@"third");
+            NSLog(@"third");
             return thirdFrameView;
         } else {
-//                NSLog(@"second");
+                NSLog(@"second");
             return secondFrameView;
         }
     } else {
         if (first < third) {
-//                        NSLog(@"first");
+                        NSLog(@"first");
             return firstFrameView;
         } else {
-//                NSLog(@"third");
+                NSLog(@"third");
             return thirdFrameView;
         }
     }
+}
+
+- (void) setOffset:(CGPoint)offset {
+    _offset = offset;
+    [firstFrameView setOffset:offset];
+    [secondFrameView setOffset:offset];
+    [thirdFrameView setOffset:offset];
 }
 
 - (void) setImageData:(PhotoAPIParserModel *) resultModel {
@@ -64,5 +71,17 @@
     [self setContentSize:CGSizeMake(self.frame.size.width, frameView.frameHeight + imgHeight)];
 }
 
+- (void) setContentSize:(CGSize)contentSize {
+    NSLog(@"setcontentSize : %@", NSStringFromCGSize(contentSize));
+    [super setContentSize:contentSize];
+}
+
+- (void) reloadUpsideImage:(NSMutableArray *) dataList {
+    
+    NSInteger firstIndex = [firstFrameView visibleStartIndex];
+    NSInteger secondeIndex = [secondFrameView visibleStartIndex];
+    NSInteger thirdIndex = [thirdFrameView visibleStartIndex];
+    NSLog(@"first : %d second : %d third : %d", firstIndex, secondeIndex, thirdIndex);
+}
 
 @end

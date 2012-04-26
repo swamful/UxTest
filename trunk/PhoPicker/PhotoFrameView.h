@@ -11,8 +11,12 @@
 #import "UIConstants.h"
 @interface PhotoFrameView : UIView {
     NSInteger frameHeight;
+    CGPoint _offset;
+    NSMutableArray *indexList;
 }
 @property (nonatomic) NSInteger frameHeight;
-
+@property (nonatomic) CGPoint offset;
+@property (nonatomic,retain) NSMutableArray *indexList;
 - (void) makeButtonDown:(PhotoAPIParserModel *) parserModel;
+- (NSInteger) visibleStartIndex;
 @end
