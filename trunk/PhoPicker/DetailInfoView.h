@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailInfoView : UIView
+@interface DetailInfoView : UIView {
+    UILabel *_tagTextView;
+}
 
+- (void) setTagText:(NSString *) text;
 @end

@@ -77,6 +77,7 @@
     UIButton *phoPickerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     phoPickerBtn.frame = CGRectMake(0, 0, 108, 30);
     [phoPickerBtn setTitle:@"phoPicker" forState:UIControlStateNormal];
+    [[phoPickerBtn titleLabel] setFont:[UIFont fontWithName:@"TrebuchetMS-Italic" size:12.0f]];
     [phoPickerBtn setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
     [phoPickerBtn setBackgroundImage:[UIImage imageNamed:@"tab_off.png"] forState:UIControlStateNormal];
     [phoPickerBtn setBackgroundImage:[UIImage imageNamed:@"tab_on.png"] forState:UIControlStateSelected];
@@ -88,6 +89,7 @@
     UIButton *naverSearchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     naverSearchBtn.frame = CGRectMake(109, 0, 108, 30);
     [naverSearchBtn setTitle:@"NAVER" forState:UIControlStateNormal];
+    [[naverSearchBtn titleLabel] setFont:[UIFont fontWithName:@"TrebuchetMS-Italic" size:12.0f]];
     [naverSearchBtn setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
     [naverSearchBtn addTarget:self action:@selector(setSearchEngine:) forControlEvents:UIControlEventTouchUpInside];
     [naverSearchBtn setBackgroundImage:[UIImage imageNamed:@"tab_off.png"] forState:UIControlStateNormal];
@@ -98,6 +100,7 @@
     UIButton *daumSearchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     daumSearchBtn.frame = CGRectMake(218, 0, 108, 30);
     [daumSearchBtn setTitle:@"daum" forState:UIControlStateNormal];
+    [[daumSearchBtn titleLabel] setFont:[UIFont fontWithName:@"TrebuchetMS-Italic" size:12.0f]];
     [daumSearchBtn setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
     [daumSearchBtn addTarget:self action:@selector(setSearchEngine:) forControlEvents:UIControlEventTouchUpInside];
     [daumSearchBtn setBackgroundImage:[UIImage imageNamed:@"tab_off.png"] forState:UIControlStateNormal];

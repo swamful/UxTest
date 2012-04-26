@@ -111,6 +111,17 @@
 			name = DetailView;
 			sourceTree = "<group>";
 		};
+		A894AE741548ED32007FEC96 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				A894AE6A1548017A007FEC96 /* AppUtility.h */,
+				A894AE6B1548017A007FEC96 /* AppUtility.m */,
+				A8A230B4153FB531000A8525 /* CameraContextMenuView.h */,
+				A8A230B5153FB531000A8525 /* CameraContextMenuView.m */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		A8B1700615401A7F00C3259A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +185,7 @@
 		A8B171AA1536B51200896DD3 /* PhoPicker */ = {
 			isa = PBXGroup;
 			children = (
+				A894AE741548ED32007FEC96 /* Utility */,
 				A894AE5D1547EF56007FEC96 /* DetailView */,
 				A8B171D61536C8C400896DD3 /* Api */,
 				A8B171D41536C8A700896DD3 /* PhotoList */,
@@ -184,12 +196,8 @@
 				A8677768153D63AF0025B6EB /* MainViewController.m */,
 				A8A230B0153FB40C000A8525 /* ToolBarView.h */,
 				A8A230B1153FB40C000A8525 /* ToolBarView.m */,
-				A8A230B4153FB531000A8525 /* CameraContextMenuView.h */,
-				A8A230B5153FB531000A8525 /* CameraContextMenuView.m */,
 				A8A230C3153FDBFF000A8525 /* TitleView.h */,
 				A8A230C4153FDBFF000A8525 /* TitleView.m */,
-				A894AE6A1548017A007FEC96 /* AppUtility.h */,
-				A894AE6B1548017A007FEC96 /* AppUtility.m */,
 				A8B171AB1536B51200896DD3 /* Supporting Files */,
 			);
 			path = PhoPicker;

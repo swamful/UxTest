@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PhotoAPIXMLParser.h"
+
 @interface DetailViewController : UIViewController {
     PhotoAPIParserModel *_dataModel;
     UIImageView *_photoFrame;
