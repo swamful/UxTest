@@ -1,0 +1,24 @@
+//
+// Prefix header for all source files of the 'PhoPicker' target in the 'PhoPicker' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <QuartzCore/QuartzCore.h>
+#endif
+#define DEGREES_TO_RADIANS(d) (d * M_PI / 180)
+#define RADIANS_TO_DEGREE(ANGLE) (ANGLE * 180) / M_PI
+#define UIColorFromRGB(rgbValue, alphaDegree) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:alphaDegree]
+
+static CATransform3D CATransform3DMakePerspective(CGFloat z) {
+    CATransform3D t = CATransform3DIdentity;
+    t.m34 = - 1.0 / z;
+    return t;
+}
