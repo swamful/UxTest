@@ -34,8 +34,8 @@ typedef NSUInteger ParsingElement;
     NSString *_thumbnail;
     NSString *_sizeHeight;
     NSString *_sizeWidth;
-    NSString *_tagText;
     NSInteger index;
+    UIImage *_downloadImage;
 }
 
 @property (nonatomic, retain) NSString *lastBuildDate;
@@ -48,7 +48,7 @@ typedef NSUInteger ParsingElement;
 @property (nonatomic, retain) NSString *thumbnail;
 @property (nonatomic, retain) NSString *sizeHeight;
 @property (nonatomic, retain) NSString *sizeWidth;
-@property (nonatomic, retain) NSString *tagText;
+@property (nonatomic, retain) UIImage *downloadImage;
 @property (nonatomic) NSInteger index;
 @end
 

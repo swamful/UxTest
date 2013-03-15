@@ -42,23 +42,27 @@ static PhotoAPIModel *instance = nil;
 }
 
 - (void) dealloc {
-    [conn release];
+    self.conn = nil;
     [_recvData release];
     [super dealloc];
 }
 
 - (void) cancelRequest {
-    [self.conn cancel];
+    if (self.conn) {
+        [self.conn cancel];        
+    }
+
     _delegate = nil;
     cancelRequest = YES;
 }
 
-- (void) getPhotoListBySearchText:(NSString*) searchText withEngine:(SEARCHENGINE) searchEngine startIndex:(NSInteger) start{
+- (void) getPhotoListBySearchText:(NSString*) searchText withEngine:(SEARCHENGINE) searchEngine startIndex:(NSInteger) startIndex {
     cancelRequest = NO;
     NSString *searchUrl ;
     switch (searchEngine) {
         case NAVER:
-            searchUrl = [NSString stringWithFormat:@"%@&query=%@&target=image&display=40&start=%d", naverApi, [searchText stringByUrlEncoding], start];            
+        case PHOPICKER:
+            searchUrl = [NSString stringWithFormat:@"%@&query=%@&target=image&display=%d&start=%d", naverApi, [searchText stringByUrlEncoding], naverImageDownloadCount,startIndex];            
             break;
         case DAUM:
             searchUrl = [NSString stringWithFormat:@"%@&q=%@&output=xml&result=20", daumApi, [searchText stringByUrlEncoding]];            
@@ -68,7 +72,7 @@ static PhotoAPIModel *instance = nil;
             return;
             break;
     }
-//    NSLog(@"searchUrl : %@", searchUrl);
+    
     NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:searchUrl] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60];
     
     [self.conn initWithRequest:req delegate:self];
@@ -77,7 +81,7 @@ static PhotoAPIModel *instance = nil;
 
 - (void) getCurrentPhotoList {
     cancelRequest = NO;
-    NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://openapi.naver.com/search?key=039cc334a00d8f3a13703ff0f7125dc5&query=hotissue&target=image&display=40"]];
+    NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://openapi.naver.com/search?key=039cc334a00d8f3a13703ff0f7125dc5&query=hotissue&target=image&display=60"]];
     [self.conn initWithRequest:req delegate:self];
 }
 
@@ -117,5 +121,9 @@ static PhotoAPIModel *instance = nil;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     [self didFinishWithDataForPhotoAPIResultParser:_recvData];
     [_recvData setLength:0];
+    if (!cancelRequest && _delegate && [_delegate respondsToSelector:@selector(connectionFinish)]) {
+        [_delegate connectionFinish];
+    }
+    
 }
 @end

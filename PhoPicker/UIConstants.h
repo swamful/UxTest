@@ -19,12 +19,14 @@ typedef enum {
     DAUM
 } SEARCHENGINE;
 
-#define listFrameWidth 103
+#define listFrameWidth 156
 #define listFrameMargin 3
 
 #define bottomToolBarHeight 41
 #define navigationTitleBarHeight 35
 #define networkStatusBarHeight 20
+
+#define naverImageDownloadCount 30
 
 #define kNetworkErrorAlertMessage @"네트워크 상태가 좋지않아\n현재 접속이 불가능합니다."
 #define kDefaultErrorAlertMessage @"에러가 발생하여 \n현재 이용이 불가능합니다."

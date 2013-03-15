@@ -10,7 +10,7 @@
 
 @implementation PhotoAPIParserModel
 @synthesize title = _title, lastBuildDate = _lastBuildDate, total = _total, 
-            start = _start, display = _display, item = _item, link = _link, thumbnail = _thumbnail, sizeHeight = _sizeHeight, sizeWidth = _sizeWidth, index ,tagText = _tagText;
+            start = _start, display = _display, item = _item, link = _link, thumbnail = _thumbnail, sizeHeight = _sizeHeight, sizeWidth = _sizeWidth, index, downloadImage = _downloadImage;
 
 - (void) dealloc {
     [_title release];
@@ -23,7 +23,8 @@
     [_thumbnail release];
     [_sizeHeight release];
     [_sizeWidth release];
-    [_tagText release];
+    [_downloadImage release];
+    [super dealloc];
 }
 
 @end
@@ -44,6 +45,7 @@ static NSString * const kSizeHeightElementName = @"sizeheight";
 static NSString * const kSizeWidthElementName = @"sizewidth";
 static NSString * const kHeightElementName = @"height";
 static NSString * const kWidthElementName = @"width";
+static NSString * const kTotalElementName = @"total";
 
 - (void) parseAPIResultString:(NSString *)string    {
     NSRange stringRange = [string rangeOfString:@"euc-kr" options:NSCaseInsensitiveSearch];
@@ -82,10 +84,20 @@ static NSString * const kWidthElementName = @"width";
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI 
  qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
     if( [elementName isEqualToString:kEntryElementName] )  {
+        if (_resultModel) {
+            [_resultModel release];
+        }
         _resultModel = [[PhotoAPIParserModel alloc] init];
         _currentElementValue = ParsingElementEntry;
         
-    }   else if( [elementName isEqualToString:kTitleElementName]) {
+    }  else if( [elementName isEqualToString:kTotalElementName] )  {
+        if (_resultModel) {
+            [_resultModel release];
+        }
+        _resultModel = [[PhotoAPIParserModel alloc] init];
+        _currentElementValue = ParsingElementTotal;
+        
+    }  else if( [elementName isEqualToString:kTitleElementName]) {
         _currentElementValue = ParsingElementTitle;
         
     }   else if( [elementName isEqualToString:kLinkElementName] || [elementName isEqualToString:kImageElementName]) {
@@ -107,7 +119,6 @@ static NSString * const kWidthElementName = @"width";
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {     
-    
     if ([elementName isEqualToString:kEntryElementName])    {
         if ( [self respondsToSelector:@selector(didFinishParsing:)] && _resultModel != nil) {
             [self performSelectorOnMainThread:@selector(didFinishParsing:) withObject:self.resultModel waitUntilDone:NO];
@@ -115,11 +126,16 @@ static NSString * const kWidthElementName = @"width";
         }   else if([self respondsToSelector:@selector(didFailParsing:)]) {
             [self performSelectorOnMainThread:@selector(didFailParsing:) withObject:nil waitUntilDone:NO];
         }
+    } else if ([elementName isEqualToString:kTotalElementName]) {
+        if ( [self respondsToSelector:@selector(didFinishParsing:)] && _resultModel != nil) {
+            [self performSelectorOnMainThread:@selector(didFinishParsing:) withObject:self.resultModel waitUntilDone:NO];
+        }
     }
     _currentElementValue = ParsingElementUndefine;
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+
     if (_resultModel == nil) return;    
     switch (_currentElementValue) {
         case ParsingElementTitle:
@@ -137,7 +153,9 @@ static NSString * const kWidthElementName = @"width";
         case ParsingElementSizewidth:
             _resultModel.sizeWidth = string;
             break;
-                case ParsingElementEntry:
+        case ParsingElementTotal:
+            _resultModel.total = string;
+            break;
         default:
             break;
     }

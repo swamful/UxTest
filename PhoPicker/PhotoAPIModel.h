@@ -20,7 +20,7 @@
 
 + (id) getSharedInstance;
 - (void) getCurrentPhotoList;
-- (void) getPhotoListBySearchText:(NSString*) searchText withEngine:(SEARCHENGINE) searchEngine startIndex:(NSInteger) start;
+- (void) getPhotoListBySearchText:(NSString*) searchText withEngine:(SEARCHENGINE) searchEngine startIndex:(NSInteger) startIndex;
 - (void) cancelRequest;
 @property (nonatomic, assign) id<PhotoAPIModelDelegate> delegate;
 @property (nonatomic, retain) NSURLConnection *conn;
@@ -29,4 +29,5 @@
 @protocol PhotoAPIModelDelegate <NSObject>
 - (void) requestDone:(PhotoAPIParserModel*) resultData;
 - (void) apiRequestError:(NSError *) error;
+- (void) connectionFinish;
 @end

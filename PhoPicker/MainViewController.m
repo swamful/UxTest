@@ -10,7 +10,16 @@
 #import "PhotoListViewController.h"
 #import "ToolBarView.h"
 #import "TitleView.h"
-
+#import "SlideShowController.h"
+#import "GridViewController.h"
+#import "SlideSlingViewController.h"
+#import "BubbleShowViewController.h"
+#import "RotationViewController.h"
+#import "ArrowMoveController.h"
+#import "XMovieController.h"
+#import "XMovieUpController.h"
+#import "BlurViewController.h"
+#import "PathAniViewController.h"
 @interface MainViewController() 
 - (void) makeToolBar;
 - (void) makeTitleView;
@@ -44,17 +53,17 @@
 {
     [super viewDidLoad];
     searchEngine = PHOPICKER;
-    _mainListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, navigationTitleBarHeight, self.view.frame.size.width, self.view.frame.size.height - bottomToolBarHeight - navigationTitleBarHeight - networkStatusBarHeight) style:UITableViewStylePlain];
+    _mainListTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, navigationTitleBarHeight, self.view.frame.size.width, self.view.frame.size.height - navigationTitleBarHeight - networkStatusBarHeight) style:UITableViewStylePlain];
     _mainListTableView.delegate = self;
     _mainListTableView.dataSource = self;
     
     [self.view addSubview:_mainListTableView];
     [_mainListTableView release];
     
-    _categoryList = [[NSMutableArray alloc] initWithObjects:@"최근 올라온 사진", nil];
+    _categoryList = [[NSMutableArray alloc] initWithObjects:@"최근 올라온 사진", @"slide show", @"grid View",@"slide sling",@"Bubble Show",@"Rotation View",@"arrow Move",@"XMovie view",@"XMovie Upgrade",@"Blur Effect",@"PathAni", nil];
     
     [self makeSearchView];
-    [self makeToolBar];
+//    [self makeToolBar];
     [self makeTitleView];
 
 }
@@ -77,7 +86,6 @@
     UIButton *phoPickerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     phoPickerBtn.frame = CGRectMake(0, 0, 108, 30);
     [phoPickerBtn setTitle:@"phoPicker" forState:UIControlStateNormal];
-    [[phoPickerBtn titleLabel] setFont:[UIFont fontWithName:@"TrebuchetMS-Italic" size:12.0f]];
     [phoPickerBtn setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
     [phoPickerBtn setBackgroundImage:[UIImage imageNamed:@"tab_off.png"] forState:UIControlStateNormal];
     [phoPickerBtn setBackgroundImage:[UIImage imageNamed:@"tab_on.png"] forState:UIControlStateSelected];
@@ -89,7 +97,6 @@
     UIButton *naverSearchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     naverSearchBtn.frame = CGRectMake(109, 0, 108, 30);
     [naverSearchBtn setTitle:@"NAVER" forState:UIControlStateNormal];
-    [[naverSearchBtn titleLabel] setFont:[UIFont fontWithName:@"TrebuchetMS-Italic" size:12.0f]];
     [naverSearchBtn setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
     [naverSearchBtn addTarget:self action:@selector(setSearchEngine:) forControlEvents:UIControlEventTouchUpInside];
     [naverSearchBtn setBackgroundImage:[UIImage imageNamed:@"tab_off.png"] forState:UIControlStateNormal];
@@ -100,7 +107,6 @@
     UIButton *daumSearchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     daumSearchBtn.frame = CGRectMake(218, 0, 108, 30);
     [daumSearchBtn setTitle:@"daum" forState:UIControlStateNormal];
-    [[daumSearchBtn titleLabel] setFont:[UIFont fontWithName:@"TrebuchetMS-Italic" size:12.0f]];
     [daumSearchBtn setTitleColor:[UIColor darkTextColor] forState:UIControlStateNormal];
     [daumSearchBtn addTarget:self action:@selector(setSearchEngine:) forControlEvents:UIControlEventTouchUpInside];
     [daumSearchBtn setBackgroundImage:[UIImage imageNamed:@"tab_off.png"] forState:UIControlStateNormal];
@@ -194,8 +200,8 @@
 
 - (void)viewDidUnload
 {
-    [super viewDidUnload];
     self.view = nil;
+    [super viewDidUnload];
 }
 
 
@@ -250,12 +256,54 @@
 #pragma UITableView Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    PhotoListViewController *plvController = [[PhotoListViewController alloc] initWithType:indexPath.row];
-    if (indexPath.row == 0) {
-        plvController.searchText = _searchBar.text;
+    if (indexPath.row <= 1) {
+        PhotoListViewController *plvController = [[PhotoListViewController alloc] initWithType:indexPath.row];
+        if (indexPath.row == 0) {
+            plvController.searchText = _searchBar.text;            
+        }
+        [self.navigationController pushViewController:plvController animated:YES];
+        [plvController release];
+    } else if (indexPath.row == 2) {
+        SlideShowController *svc = [[SlideShowController alloc] init];
+        [self.navigationController pushViewController:svc animated:YES];
+        [svc release];
+    } else if (indexPath.row == 3) {
+        GridViewController *gvc = [[GridViewController alloc] init];
+        [self.navigationController pushViewController:gvc animated:YES];
+        [gvc release];
+    } else if (indexPath.row == 4) {
+        SlideSlingViewController *svc = [[SlideSlingViewController alloc] init];
+        [self.navigationController pushViewController:svc animated:YES];
+        [svc release];
+    } else if (indexPath.row == 5) {
+        BubbleShowViewController *bsvc = [[BubbleShowViewController alloc] init];
+        [self.navigationController pushViewController:bsvc animated:YES];
+        [bsvc release];
+    } else if (indexPath.row == 6) {
+        RotationViewController *rtvc = [[RotationViewController alloc] init];
+        [self.navigationController pushViewController:rtvc animated:YES];
+        [rtvc release];
+    } else if (indexPath.row == 7) {
+        ArrowMoveController *amvc = [[ArrowMoveController alloc] init];
+        [self.navigationController pushViewController:amvc animated:YES];
+        [amvc release];
+    } else if (indexPath.row == 8) {
+        XMovieController *xmvc = [[XMovieController alloc] init];
+        [self.navigationController pushViewController:xmvc animated:YES];
+        [xmvc release];
+    } else if (indexPath.row == 9) {
+        XMovieUpController *xmvuc = [[XMovieUpController alloc] init];
+        [self.navigationController pushViewController:xmvuc animated:YES];
+        [xmvuc release];
+    } else if (indexPath.row == 10) {
+        BlurViewController *xmvuc = [[BlurViewController alloc] init];
+        [self.navigationController pushViewController:xmvuc animated:YES];
+        [xmvuc release];
+    } else if (indexPath.row == 11) {
+        PathAniViewController *pavc = [[PathAniViewController alloc] init];
+        [self.navigationController pushViewController:pavc animated:YES];
+        [pavc release];
     }
-    [self.navigationController pushViewController:plvController animated:YES];
-    [plvController release];
 }
 
 

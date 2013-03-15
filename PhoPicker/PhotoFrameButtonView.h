@@ -9,14 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface PhotoFrameButtonView : UIButton {
-    NSString *_linkUrl;
-    UIControlState controlState;
     NSInteger index;
+    BOOL _isFirstFrame;
     UIActivityIndicatorView *indicator;
 }
 
-@property(nonatomic, retain) NSString *linkUrl;
 @property(nonatomic) NSInteger index;
-- (void) setImageInBackground:(NSString *)linkUrl forState:(UIControlState)state;
-
+@property(nonatomic) BOOL isFirstFrame;
+- (void)showIndicator;
+- (void)hideIndicator;
 @end

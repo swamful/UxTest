@@ -14,20 +14,18 @@
 @end
 
 @implementation PhotoListView
-@synthesize offset = _offset;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         firstFrameView = [[PhotoFrameView alloc] initWithFrame:CGRectMake(0, 2, listFrameWidth, 0)];        
         secondFrameView = [[PhotoFrameView alloc] initWithFrame:CGRectMake(listFrameWidth + listFrameMargin, 2, listFrameWidth, 0)];
-        thirdFrameView = [[PhotoFrameView alloc] initWithFrame:CGRectMake((listFrameWidth + listFrameMargin) * 2, 2, listFrameWidth, 0)];
+
         [self addSubview:firstFrameView];
         [firstFrameView release];
         [self addSubview:secondFrameView];
         [secondFrameView release];
-        [self addSubview:thirdFrameView];
-        [thirdFrameView release];
     }
     return self;
 }
@@ -35,53 +33,38 @@
 - (PhotoFrameView *) minHeightView {
     NSInteger first = firstFrameView.frameHeight;
     NSInteger second = secondFrameView.frameHeight;
-    NSInteger third = thirdFrameView.frameHeight;
     
-    if (first >= second) {
-        if (second >= third) {
-            NSLog(@"third");
-            return thirdFrameView;
-        } else {
-                NSLog(@"second");
-            return secondFrameView;
-        }
+    if (first > second) {
+        return secondFrameView;
     } else {
-        if (first < third) {
-                        NSLog(@"first");
-            return firstFrameView;
-        } else {
-                NSLog(@"third");
-            return thirdFrameView;
-        }
+        return firstFrameView;
     }
 }
 
-- (void) setOffset:(CGPoint)offset {
-    _offset = offset;
-    [firstFrameView setOffset:offset];
-    [secondFrameView setOffset:offset];
-    [thirdFrameView setOffset:offset];
+- (CGFloat) maxHeight {
+    NSInteger first = firstFrameView.frameHeight;
+    NSInteger second = secondFrameView.frameHeight;
+    
+    if (first > second) {
+        return firstFrameView.frame.size.height;
+    } else {
+        return secondFrameView.frame.size.height;
+    }
 }
 
 - (void) setImageData:(PhotoAPIParserModel *) resultModel {
+    if ([firstFrameView.btnDictionary objectForKey:[NSString stringWithFormat:@"%d", resultModel.index]]) {
+        [firstFrameView setImage:resultModel];
+    } else if ([secondFrameView.btnDictionary objectForKey:[NSString stringWithFormat:@"%d", resultModel.index]]) {
+        [secondFrameView setImage:resultModel];        
+    }
+}
+
+- (void) makeFrame:(PhotoAPIParserModel *)resultModel {
     PhotoFrameView *frameView = [self minHeightView];
     [frameView makeButtonDown:resultModel];
-    CGSize orgSize = CGSizeMake([[resultModel sizeWidth] intValue], [[resultModel sizeHeight] intValue]);
-    NSInteger imgHeight = (orgSize.height * listFrameWidth) /orgSize.width;
-    [self setContentSize:CGSizeMake(self.frame.size.width, frameView.frameHeight + imgHeight)];
-}
-
-- (void) setContentSize:(CGSize)contentSize {
-    NSLog(@"setcontentSize : %@", NSStringFromCGSize(contentSize));
-    [super setContentSize:contentSize];
-}
-
-- (void) reloadUpsideImage:(NSMutableArray *) dataList {
-    
-    NSInteger firstIndex = [firstFrameView visibleStartIndex];
-    NSInteger secondeIndex = [secondFrameView visibleStartIndex];
-    NSInteger thirdIndex = [thirdFrameView visibleStartIndex];
-    NSLog(@"first : %d second : %d third : %d", firstIndex, secondeIndex, thirdIndex);
+    CGFloat contentSizeHeight = MAX(self.contentSize.height, frameView.frameHeight + 40);    
+    [self setContentSize:CGSizeMake(self.frame.size.width, contentSizeHeight)];
 }
 
 @end

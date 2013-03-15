@@ -7,10 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PhotoAPIXMLParser.h"
 
-@interface DetailInfoView : UIView {
-    UILabel *_tagTextView;
+@interface DetailInfoView : UIView <UIGestureRecognizerDelegate> {
+    UIImageView *_photoFrame;
+    UIScrollView *_mainView;
+    PhotoAPIParserModel *_dataModel;
+    
+    CALayer *layer;
 }
 
-- (void) setTagText:(NSString *) text;
+@property (nonatomic, assign) PhotoAPIParserModel *dataModel;
+
+- (id)initWithFrame:(CGRect)frame withDataModel:(PhotoAPIParserModel *) dataModel;
+- (void) putImage:(UIImage *) image;
 @end

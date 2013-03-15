@@ -9,38 +9,27 @@
 #import "PhotoFrameButtonView.h"
 #import "AppUtility.h"
 @implementation PhotoFrameButtonView
-@synthesize linkUrl = _linkUrl, index;
+@synthesize index, isFirstFrame = _isFirstFrame;
 
-- (void)layoutIndicator:(UIView *)aview{
-	CGSize size = aview.bounds.size;
+- (void)showIndicator {
+    if (!indicator) {
+        indicator = [[UIActivityIndicatorView alloc] init];
+    }
+    
+	[self addSubview:indicator];
+    [indicator release];
+	CGSize size = self.bounds.size;
 	CGSize mysize = [indicator sizeThatFits:size];
 	indicator.frame = CGRectMake(roundf((size.width - mysize.width) / 2), roundf((size.height - mysize.height) / 2), mysize.width, mysize.height);
-}
-
-- (void) setImageInBackground:(NSString *)linkUrl forState:(UIControlState)state {
-    controlState = state;
-    indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [self layoutIndicator:self];
-    [self addSubview:indicator];
-    [indicator startAnimating];
-    [self performSelectorInBackground:@selector(getImage:) withObject:linkUrl];
+	
+	[indicator startAnimating];
 }
 
 
-
-- (void) getImage:(NSString *) linkUrl {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:linkUrl]];
-
-    UIImage *image = [UIImage imageWithData:imageData];
-    [self performSelectorOnMainThread:@selector(setImageInMain:) withObject:image waitUntilDone:NO];
-    [pool release];
-
-}
-
-- (void) setImageInMain:(UIImage *) image {
-    [self setImage:image forState:UIControlStateNormal];
-    [indicator stopAnimating];
+- (void)hideIndicator {
+    if ( ![indicator isAnimating] ) return;
+	[indicator stopAnimating];
 	[indicator removeFromSuperview];
 }
+
 @end
