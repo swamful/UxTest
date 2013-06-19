@@ -25,6 +25,8 @@
 		A836161D16E6D3ED00635523 /* BlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = A836161C16E6D3ED00635523 /* BlurView.m */; };
 		A836161F16E6E63C00635523 /* naverapp.png in Resources */ = {isa = PBXBuildFile; fileRef = A836161E16E6E63C00635523 /* naverapp.png */; };
 		A84D61F615D9E4E10071BD49 /* SlideSlingGestureView.m in Sources */ = {isa = PBXBuildFile; fileRef = A84D61F515D9E4E10071BD49 /* SlideSlingGestureView.m */; };
+		A85A15EE176720DF00B68A3E /* SafariMultiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A85A15ED176720DF00B68A3E /* SafariMultiViewController.m */; };
+		A85A15F1176720F100B68A3E /* SafariMultiView.m in Sources */ = {isa = PBXBuildFile; fileRef = A85A15F0176720F100B68A3E /* SafariMultiView.m */; };
 		A85FB0E215D39E5D0098B90D /* MeHomeGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A85FB0DF15D39E5D0098B90D /* MeHomeGridView.m */; };
 		A85FB0E315D39E5D0098B90D /* TestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = A85FB0E115D39E5D0098B90D /* TestApi.m */; };
 		A85FB0E515D39E860098B90D /* 0.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A85FB0E415D39E860098B90D /* 0.jpeg */; };
@@ -35,6 +37,8 @@
 		A85FB0F015D39E9E0098B90D /* 10.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A85FB0EE15D39E9E0098B90D /* 10.jpeg */; };
 		A85FB0F115D39E9E0098B90D /* 11.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = A85FB0EF15D39E9E0098B90D /* 11.jpeg */; };
 		A85FB0F415D39EAE0098B90D /* GridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A85FB0F315D39EAE0098B90D /* GridViewController.m */; };
+		A864826B175833410042F68B /* EarthEffectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A864826A175833410042F68B /* EarthEffectViewController.m */; };
+		A864826E175833720042F68B /* EarthEffectView.m in Sources */ = {isa = PBXBuildFile; fileRef = A864826D175833720042F68B /* EarthEffectView.m */; };
 		A866950015D8D798003F6D96 /* SlideSlingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A86694FF15D8D798003F6D96 /* SlideSlingViewController.m */; };
 		A866950315D8D7AA003F6D96 /* SlideSlingView.m in Sources */ = {isa = PBXBuildFile; fileRef = A866950215D8D7AA003F6D96 /* SlideSlingView.m */; };
 		A86703E916F1AE7D00A7FDC9 /* h_ball_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A86703E716F1AE7D00A7FDC9 /* h_ball_bg@2x.png */; };
@@ -131,6 +135,10 @@
 		A836161E16E6E63C00635523 /* naverapp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = naverapp.png; sourceTree = "<group>"; };
 		A84D61F415D9E4E10071BD49 /* SlideSlingGestureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideSlingGestureView.h; sourceTree = "<group>"; };
 		A84D61F515D9E4E10071BD49 /* SlideSlingGestureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideSlingGestureView.m; sourceTree = "<group>"; };
+		A85A15EC176720DF00B68A3E /* SafariMultiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafariMultiViewController.h; sourceTree = "<group>"; };
+		A85A15ED176720DF00B68A3E /* SafariMultiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafariMultiViewController.m; sourceTree = "<group>"; };
+		A85A15EF176720F100B68A3E /* SafariMultiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafariMultiView.h; sourceTree = "<group>"; };
+		A85A15F0176720F100B68A3E /* SafariMultiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafariMultiView.m; sourceTree = "<group>"; };
 		A85FB0DE15D39E5D0098B90D /* MeHomeGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeHomeGridView.h; sourceTree = "<group>"; };
 		A85FB0DF15D39E5D0098B90D /* MeHomeGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeHomeGridView.m; sourceTree = "<group>"; };
 		A85FB0E015D39E5D0098B90D /* TestApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestApi.h; sourceTree = "<group>"; };
@@ -144,6 +152,10 @@
 		A85FB0EF15D39E9E0098B90D /* 11.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 11.jpeg; sourceTree = "<group>"; };
 		A85FB0F215D39EAE0098B90D /* GridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridViewController.h; sourceTree = "<group>"; };
 		A85FB0F315D39EAE0098B90D /* GridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridViewController.m; sourceTree = "<group>"; };
+		A8648269175833410042F68B /* EarthEffectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EarthEffectViewController.h; sourceTree = "<group>"; };
+		A864826A175833410042F68B /* EarthEffectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EarthEffectViewController.m; sourceTree = "<group>"; };
+		A864826C175833720042F68B /* EarthEffectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EarthEffectView.h; sourceTree = "<group>"; };
+		A864826D175833720042F68B /* EarthEffectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EarthEffectView.m; sourceTree = "<group>"; };
 		A86694FE15D8D798003F6D96 /* SlideSlingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideSlingViewController.h; sourceTree = "<group>"; };
 		A86694FF15D8D798003F6D96 /* SlideSlingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideSlingViewController.m; sourceTree = "<group>"; };
 		A866950115D8D7AA003F6D96 /* SlideSlingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideSlingView.h; sourceTree = "<group>"; };
@@ -289,6 +301,17 @@
 			name = BlurGraphic;
 			sourceTree = "<group>";
 		};
+		A85A15EB176720BF00B68A3E /* SafariMulti */ = {
+			isa = PBXGroup;
+			children = (
+				A85A15EC176720DF00B68A3E /* SafariMultiViewController.h */,
+				A85A15ED176720DF00B68A3E /* SafariMultiViewController.m */,
+				A85A15EF176720F100B68A3E /* SafariMultiView.h */,
+				A85A15F0176720F100B68A3E /* SafariMultiView.m */,
+			);
+			name = SafariMulti;
+			sourceTree = "<group>";
+		};
 		A85FB0D915D39E3E0098B90D /* GridView */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,6 +323,17 @@
 				A85FB0F315D39EAE0098B90D /* GridViewController.m */,
 			);
 			name = GridView;
+			sourceTree = "<group>";
+		};
+		A8648268175833230042F68B /* Earth */ = {
+			isa = PBXGroup;
+			children = (
+				A8648269175833410042F68B /* EarthEffectViewController.h */,
+				A864826A175833410042F68B /* EarthEffectViewController.m */,
+				A864826C175833720042F68B /* EarthEffectView.h */,
+				A864826D175833720042F68B /* EarthEffectView.m */,
+			);
+			name = Earth;
 			sourceTree = "<group>";
 		};
 		A86694ED15D8D3C3003F6D96 /* SlideSling */ = {
@@ -496,6 +530,8 @@
 		A8B171AA1536B51200896DD3 /* PhoPicker */ = {
 			isa = PBXGroup;
 			children = (
+				A85A15EB176720BF00B68A3E /* SafariMulti */,
+				A8648268175833230042F68B /* Earth */,
 				A812A65716F16B7B0010720F /* PathUpAni */,
 				A836161716E6D36900635523 /* BlurGraphic */,
 				A87F033C16099FEC00A6552A /* XMovieUpgrade */,
@@ -717,6 +753,10 @@
 				A836161D16E6D3ED00635523 /* BlurView.m in Sources */,
 				A812A65A16F16B970010720F /* PathAniViewController.m in Sources */,
 				A812A65D16F16BC00010720F /* PathAniView.m in Sources */,
+				A864826B175833410042F68B /* EarthEffectViewController.m in Sources */,
+				A864826E175833720042F68B /* EarthEffectView.m in Sources */,
+				A85A15EE176720DF00B68A3E /* SafariMultiViewController.m in Sources */,
+				A85A15F1176720F100B68A3E /* SafariMultiView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,6 +821,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhoPicker/PhoPicker-Prefix.pch";
 				INFOPLIST_FILE = "PhoPicker/PhoPicker-Info.plist";
@@ -791,6 +832,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -798,7 +840,7 @@
 		A8B171BA1536B51200896DD3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: NHN Corporation";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: NHN Corporation";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhoPicker/PhoPicker-Prefix.pch";
@@ -809,7 +851,7 @@
 					"\"$(SDKROOT)/usr/lib/system\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "694592B8-224B-4F33-B886-A9B5DCCBCBC1";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A26CED2A-47BA-4786-878B-18B51D3E017D";
 				WRAPPER_EXTENSION = app;
 			};
