@@ -20,6 +20,8 @@
 #import "XMovieUpController.h"
 #import "BlurViewController.h"
 #import "PathAniViewController.h"
+#import "EarthEffectViewController.h"
+#import "SafariMultiViewController.h"
 @interface MainViewController() 
 - (void) makeToolBar;
 - (void) makeTitleView;
@@ -60,7 +62,7 @@
     [self.view addSubview:_mainListTableView];
     [_mainListTableView release];
     
-    _categoryList = [[NSMutableArray alloc] initWithObjects:@"최근 올라온 사진", @"slide show", @"grid View",@"slide sling",@"Bubble Show",@"Rotation View",@"arrow Move",@"XMovie view",@"XMovie Upgrade",@"Blur Effect",@"PathAni", nil];
+    _categoryList = [[NSMutableArray alloc] initWithObjects:@"최근 올라온 사진", @"slide show", @"grid View",@"slide sling",@"Bubble Show",@"Rotation View",@"arrow Move",@"XMovie view",@"XMovie Upgrade",@"Blur Effect",@"PathAni",@"safariMultiver", nil];
     
     [self makeSearchView];
 //    [self makeToolBar];
@@ -218,7 +220,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d", (indexPath.row %15)];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -238,7 +240,7 @@
     if (indexPath.row == 0 && _buttonListView.hidden == NO) {
         return 70;
     }
-    return 40;
+    return 50;
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     [_mainListTableView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];    
@@ -303,6 +305,10 @@
         PathAniViewController *pavc = [[PathAniViewController alloc] init];
         [self.navigationController pushViewController:pavc animated:YES];
         [pavc release];
+    } else if (indexPath.row == 12) {
+        SafariMultiViewController *efvc = [[SafariMultiViewController alloc] init];
+        [self.navigationController pushViewController:efvc animated:YES];
+        [efvc release];
     }
 }
 

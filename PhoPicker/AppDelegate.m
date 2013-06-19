@@ -10,6 +10,8 @@
 #import "MainViewController.h"
 #import "SlideShowController.h"
 #import "PathAniViewController.h"
+#import "EarthEffectViewController.h"    
+#import "SafariMultiViewController.h"
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -25,8 +27,8 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.window.backgroundColor = [UIColor whiteColor];
-//    PathAniViewController *mvc = [[[PathAniViewController alloc] initWithNibName:nil bundle:nil] autorelease];
-    MainViewController *mvc = [[[MainViewController alloc] initWithNibName:nil bundle:nil] autorelease];
+    SafariMultiViewController *mvc = [[[SafariMultiViewController alloc] initWithNibName:nil bundle:nil] autorelease];
+//    MainViewController *mvc = [[[MainViewController alloc] initWithNibName:nil bundle:nil] autorelease];
     nc = [[UINavigationController alloc] initWithRootViewController:mvc];
     [self.window addSubview:nc.view];
 
