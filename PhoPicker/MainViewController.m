@@ -3,7 +3,6 @@
 //  PhoPicker
 //
 //  Created by 승필 백 on 12. 4. 17..
-//  Copyright 2012 NHN Corp. All rights reserved.
 //
 
 #import "MainViewController.h"

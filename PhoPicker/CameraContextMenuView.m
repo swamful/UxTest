@@ -3,7 +3,6 @@
 //  NaverSearch
 //
 //  Created by 백 승필 on 12. 4. 3..
-//  Copyright (c) 2012 NHN. All rights reserved.
 //
 
 #import "CameraContextMenuView.h"
